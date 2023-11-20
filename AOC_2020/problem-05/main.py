@@ -12,22 +12,23 @@ def create_id(row,col) -> int:
 
 with open('input.txt', 'r') as input_file:
     codes = input_file.read().strip().split('\n')
-    rows = []
-    cols = []
     ids = []
+    seats = []
     for code in codes:
         row = division(0, 127, code[0:7], 7, ('F', 'B'))
         col = division(0, 7, code[7:10], 3, ('L', 'R'))
-        rows.append(row)
-        cols.append(col)
         ids.append(create_id(row, col))
-
-    for i in range(min(rows), max(rows) + 1):
-        if i not in rows:
-            our_row = i
-    for i in range(min(cols), max(cols) + 1):
-        if i not in cols:
-            our_col = i
-
-    print(create_id(our_row, our_col))
+        seats.append((row, col)) 
+    
+    # Analyze the missing seats
+    for j in range(0, 7) : 
+        for i in range(1, 127) : 
+            if (i, j) not in seats: 
+                # print(i, j)
+                pass
+    
+    # Checked for the isolated seat
+    print("Part 1")
     print(max(ids))
+    print("Part 2")
+    print(create_id(84, 6))
