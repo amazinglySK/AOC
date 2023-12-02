@@ -29,7 +29,6 @@ def part2(lines) :
 
 f = input('File name : ')
 with open(f) as inp_file : 
-	# Do something
     lines = inp_file.readlines()
     s = part1(lines)
     print(s)
