@@ -19,3 +19,22 @@ Part 2 : Straight forward checking for the maximum value in a game. That would b
 Part 1 : Collected all nodes (i.e. numbers and special characters along with all the coordinates they're in). For each of the number node, checked if any of the neighbouring node was a special character. If it was, then we consider it in our sum. 
 
 Part 2 : Went through all the star nodes and for each star node, fetched it's neighbours and if it had exactly 2 neighbouring part numbers, then we multiply those numbers to gear_ratio.
+
+## Day 4
+
+Part 1 : Simple parsing, and a for loops through the winning tickets to see the number of winning tickets. Stored this in a list for the second part. 
+
+Part 2 : Kind of a memoized DFS using recursion. Kept "scratching" card until a card with 0 points is encountered (which will return 1). Then the previous functions in the stack will return 1 + [scratch sum of all the next n cards]
+
+## Day 5
+
+Part 1 : Started off with simple parsing. Picked up the destination, source and the length of the range. For a given number if it is between source and source + length - 1 (inclusive), then we may map it to the destination. Mapping formula used: n - source + destination
+
+Part 2 : A bit of set theory. Found the intersection between the seed ranges and the source map range. If there's no intersection, then there's simply no mapping done. In the case that there's an intersection, the intersection part is mapped and the non-intersection set (ONLY SEEDS) is then mapped to itself. Mapping formula here, was
+
+```
+diff = so - dest
+intersection.lower - diff, intersection.upper - diff
+```
+
+Interval operations were done using [portion](https://pypi.org/project/portion/)
