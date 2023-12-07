@@ -38,3 +38,17 @@ intersection.lower - diff, intersection.upper - diff
 ```
 
 Interval operations were done using [portion](https://pypi.org/project/portion/)
+
+## Day 6
+
+Part 1 : Simple for loop and checking each hold, distance combination.
+
+Part 2 : Reduced the size of the problem by 1/2. Didn't need an overkill solution to solve it since the input size was small this time (Unlike day 5)
+
+## Day 7 
+
+That was a lot of sorting! *Phew*
+
+Part 1 : Generated the strengths of each hand according to the given condition (from 7..1). Seggregated it based on the score, and then sorted each segment using bubble sort. 
+
+Part 2 : Simply changed the order of precedence and a few edits in the strength calculation. The J-count was now added to the card with maximum number of occurences. The essential sorting algorithm remained the same. 
