@@ -1,3 +1,4 @@
 *.txt
 go.mod
 *.json
+__pycache__
