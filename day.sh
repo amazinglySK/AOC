@@ -5,10 +5,9 @@ cd "$1"
 touch main.py sample-input.txt input.txt
 
 echo "
+import sys
 
-f = input('File name : ')
+f = sys.argv[1] 
 with open(f) as inp_file : 
-	# Do something
 	pass
-
 " >> main.py
