@@ -1,45 +1,41 @@
-
+# Huge thanks to @MattieShoes on Reddit for part 1
 import sys
 
+def check(s, b) : 
+    x = [x for x in s.split(".") if x != ""]
+    return x == ["#"*y for y in b]
+
 def compute(s, b):
-    if b == []  : 
-        if "#" in s : return 0
-        else : return 1
+    if "?" not in s : 
+        if check(s, b) : return 1
+        else : return 0
 
-    cb = b.pop()
     enc = False
+    cb = []
+    c = 0 
+    for i in s : 
+        if i == "#" : enc = True; c += 1
+        elif i == "?" : break
+        elif i == "." :
+            if enc : 
+                cb.append(c)
+                c = 0
+                enc = False
+    if cb != b[:len(cb)] : return 0
 
-    for idx, i in enumerate(s) : 
-        if i == "." : 
-            if cb == 0 and enc : 
-                if b == [] : continue
-                else : cb = b.pop()
-            elif enc and cb : return 0
-            enc = False
-        if i == "?" :
-            if cb : 
-                b += [cb]
-                a = compute("#" + s[idx+1:], b.copy())
-            else : a = 0
-            bs = compute("." + s[idx+1:], b.copy())
-            return a + bs
-        if i == "#" : 
-            cb -= 1
-            enc = True
-            if cb < 0 : return 0 
-    
-
-    if b != [] : return 0
-
-    return 1
-    
+    idx = s.index("?")
+    a = s[:idx] + "#" + s[idx+1:]
+    bs = s[:idx] + "." + s[idx+1:]
+    return compute(a, b) + compute(bs, b)
 
 f = sys.argv[1] 
 with open(f) as fp: 
     lines = fp.read().strip().split("\n")
+    sm = 0
     for i in lines : 
         s, b = tuple(i.split())
         b = [int(x) for x in b.split(",")]
-        c = compute(s, b[::-1])
-        print(c)
+        c = compute(s, b)
+        sm += c
+    print(sm)
 
